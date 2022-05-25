@@ -3,7 +3,7 @@
 echo "--------------------------------------------------------------------"
 echo "--------------------------------------------------------------------"
 echo "--------------------------------------------------------------------"
-echo "------------Mimula - Infrastructure automation------------"
+echo "------------terra_less - Infrastructure automation------------"
 echo "-------- initial terraform state management and state locks --------"
 echo "--------------------------------------------------------------------"
 echo "--------------------------------------------------------------------"
@@ -90,7 +90,7 @@ echo $'\e[1;34m'"------------------- Enabling Tagging for Bucket $RESOURCE_NAME 
 "$'\e[0m'
 
 aws s3api put-bucket-tagging --bucket $RESOURCE_NAME \
-    --tagging TagSet="[{Key=Author,Value=\"Mimula\"},{Key=Name,Value=\"$RESOURCE_NAME\"}]" \
+    --tagging TagSet="[{Key=Author,Value=\"terra_less\"},{Key=Name,Value=\"$RESOURCE_NAME\"}]" \
     $PROFILE_COMMAND
 
 # ----------------------------------------------------------------------------------------------------
@@ -104,7 +104,7 @@ aws dynamodb create-table --table-name $RESOURCE_NAME \
     --attribute-definitions AttributeName=LockID,AttributeType=S \
     --key-schema AttributeName=LockID,KeyType=HASH \
     --billing-mode PAY_PER_REQUEST \
-    --tags Key=Author,Value="Mimula" Key=Name,Value="$RESOURCE_NAME" \
+    --tags Key=Author,Value="terra_less" Key=Name,Value="$RESOURCE_NAME" \
     --region $BUCKET_REGION \
     $PROFILE_COMMAND
 
