@@ -1,0 +1,4 @@
+src/*/.serverless
+src/*/node_modules
+src/*/package-lock.json
+src/*/errored.tfstate
