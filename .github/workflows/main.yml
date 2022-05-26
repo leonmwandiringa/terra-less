@@ -39,10 +39,10 @@ jobs:
           sed -i "s|{{RESOURCE_NAME}}|${{ env.RESOURCE_NAME }}|g" "backend.tf"
       - name: "Terraform Init"
         id: terraform_init
-        run: terraform init .
+        run: terraform init
       - name: "Terraform Plan"
         id: terraform_plan
-        run: terraform plan .
+        run: terraform plan
       - name: "Terraform Apply"
         id: terraform_apply
-        run: terraform apply -auto-approve .
+        run: terraform apply -auto-approve
