@@ -20,4 +20,5 @@ module "terra_less_ssm_parameter_store" {
       "parameter_description" = "api gateway arn"
     },
   ]
+  global_tags = merge({"Name" = "terra less parameter store"}, var.global_tags)
 }
