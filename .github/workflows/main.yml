@@ -38,11 +38,14 @@ jobs:
           sed -i "s|{{AWS_REGION}}|${{ env.AWS_REGION }}|g" "backend.tf"
           sed -i "s|{{RESOURCE_NAME}}|${{ env.RESOURCE_NAME }}|g" "backend.tf"
       - name: "Terraform Init"
+        working-directory: ./src
         id: terraform_init
         run: terraform init
       - name: "Terraform Plan"
+        working-directory: ./src
         id: terraform_plan
         run: terraform plan
       - name: "Terraform Apply"
+        working-directory: ./src
         id: terraform_apply
         run: terraform apply -auto-approve
