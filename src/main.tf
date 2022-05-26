@@ -1,12 +1,12 @@
 module "terra_less_api_gateway_log_group" {
-  source = "techadontech/cloudwatch-logs"
+  source = "techadontech/logs/cloudwatch"
   log_group_name = "terra-less-log-group"
   retention_in_days = 7
   global_tags = merge({"Name" = "terra less Api gateway log group"}, var.global_tags)
 }
 
 module "terra_less_api_gateway" {
-  source = "techadontech/api-gateway-rest-api"
+  source = "techadontech/api-gateway-rest-api/api"
   name          = "terra-less"
   xray_tracing_enabled = true
   metrics_enabled = true

@@ -1,5 +1,5 @@
 module "terra_less_ssm_parameter_store" {
-  source = "techadontech/parameter-store"
+  source = "techadontech/store/parameter"
   parameters = [
     {
       "parameter_name" = "/terra_less/dev/api_gateway/id"
