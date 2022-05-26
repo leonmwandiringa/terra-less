@@ -6,7 +6,7 @@ module "terra_less_api_gateway_log_group" {
 }
 
 module "terra_less_api_gateway" {
-  source = "techadontech/api-gateway-rest-api/api"
+  source = "techadontech/gateway-rest-api/api"
   name          = "terra-less"
   xray_tracing_enabled = true
   metrics_enabled = true
