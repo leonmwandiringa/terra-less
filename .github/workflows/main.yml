@@ -33,6 +33,7 @@ jobs:
         id: transform_infrastructure_values
         run: |
           sed -i "s|{{AWS_REGION}}|${{ env.AWS_REGION }}|g" "variables.tf"
+          sed -i "s|{{AWS_REGION}}|${{ env.AWS_REGION }}|g" "provider.tf"
           sed -i "s|{{PROJECT_NAME}}|${{ env.PROJECT_NAME }}|g" "variables.tf"
           sed -i "s|{{ENVIRONMENT}}|${{ env.ENV_STAGE }}|g" "variables.tf"
           sed -i "s|{{AWS_REGION}}|${{ env.AWS_REGION }}|g" "backend.tf"
