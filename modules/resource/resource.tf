@@ -1,22 +1,21 @@
 resource "null_resource" "default" {
-  count = length(var.create_commands) > 0 || length(var.destroy_commands) ? 1 : 0
+  count = length(var.create_commands) > 0 || length(var.destroy_commands) > 0 ? 1 : 0
 
   triggers = {
-    create_commands = var.create_commands
-    destroy_commands = var.destroy_commands
+    timestamp = var.tags.Timestamp
   }
-
+  
   provisioner "local-exec" {
     when = create
     command = <<-EOT
-        ${join("\n", self.triggers.create_commands)}
+        ${join("\n", concat(var.create_commands, "echo at ${self.triggers.timestamp}, creation completed"))}
     EOT
   }
 
   provisioner "local-exec" {
     when = destroy
     command = <<-EOT
-        ${join("\n", self.triggers.destroy_commands)}
+        ${join("\n", concat(var.destroy_commands, "echo ${self.triggers.timestamp}, destruction completed"))}
     EOT
   }
 }

@@ -83,7 +83,12 @@ module "terra_less_service1" {
     "cd ..",
     "STAGE=dev sls remove"
   ]
-  tags = var.global_tags
+  tags = merge(
+    var.global_tags,
+    {
+      "Timestamp" = timestamp()
+    }
+  )
   depends_on = [
     module.terra_less_api_gateway
   ]
