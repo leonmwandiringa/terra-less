@@ -68,7 +68,9 @@ module "terra_less_service1" {
   commands = [
     "cd terraless-service1",
     "npm install",
-    "npm install -g serverless"
+    "cd terraless-service1/src",
+    "yarn",
+    "STAGE=dev sls deploy"
   ]
   tags = var.global_tags
   depends_on = [

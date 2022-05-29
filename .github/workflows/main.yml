@@ -24,6 +24,12 @@ jobs:
       - name: Script Permissions
         id: terraform_script_permissions
         run: chmod 700 ./scripts -R
+      - name: Serverless dependencies
+        id: serverless_dependencies
+        run: |
+          npm install -g serverless
+          sls config credentials --provider aws --key ${{ secrets.ACCESS_KEY_ID }} --secret ${{ secrets.SECRET_ACCESS_KEY }}
+          npm install yarn -g
       - name: Configure and Run Terraform state management prerequisites
         id: terraform_run_state
         run: ./init_state.sh ${{ env.RESOURCE_NAME }} ${{ env.AWS_REGION }}
