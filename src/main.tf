@@ -35,7 +35,7 @@ module "terra_less_api_gateway" {
   xray_tracing_enabled = true
   metrics_enabled = true
   log_group_arn = module.terra_less_api_gateway_log_group.arn
-  cloudwatch_role_arn = module.terra_less_api_gateway_iam.arn
+  cloudwatch_role_arn = module.terra_less_api_gateway_iam.role_arn
   openapi_config = {
     openapi = "3.0.1"
     info = {
