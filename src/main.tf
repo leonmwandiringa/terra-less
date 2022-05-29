@@ -67,8 +67,10 @@ module "terra_less_service1" {
   source = "../modules/resource"
   commands = [
     "cd terraless-service1",
+    "ls",
     "npm install",
-    "cd terraless-service1/src",
+    "cd ./src",
+    "ls",
     "yarn",
     "STAGE=dev sls deploy"
   ]
