@@ -2,7 +2,7 @@ resource "null_resource" "default" {
   count = length(var.create_commands) > 0 || length(var.destroy_commands) > 0 ? 1 : 0
 
   triggers = {
-    timestamp = var.tags.Timestamp
+    timestamp = timestamp()
   }
   
   provisioner "local-exec" {
@@ -15,7 +15,7 @@ resource "null_resource" "default" {
   provisioner "local-exec" {
     when = destroy
     command = <<-EOT
-        ${join("\n", concat(var.destroy_commands, "echo ${self.triggers.timestamp}, destruction completed"))}
+        ${join("\n", concat(var.destroy_commands, "echo at ${self.triggers.timestamp}, destruction completed"))}
     EOT
   }
 }
