@@ -2,7 +2,7 @@
 module "terra_less_api_gateway_iam" {
   source = "techadontech/role/iam"
   tags = var.global_tags
-  name = "api_gateway_iam"
+  name = "terra_less_api_gateway_iam"
   service_name = "apigateway.amazonaws.com"
   policies = [
         {
@@ -61,4 +61,17 @@ module "terra_less_api_gateway" {
   tags = merge(var.global_tags, {
     "Name" = "terra-less gateway rest"
   })
+}
+
+module "terra_less_service1" {
+  source = "../modules/resource"
+  commands = [
+    "cd terraless-service1",
+    "npm install",
+    "npm install -g serverless"
+  ]
+  tags = var.global_tags
+  depends_on = [
+    module.terra_less_api_gateway
+  ]
 }

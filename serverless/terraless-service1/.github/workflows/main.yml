@@ -1,0 +1,39 @@
+name: DeployBTCWalletsService
+on:
+  push:
+    branches:
+      - dev
+
+env:
+  TARGET: dev
+  AWS_REGION: us-east-2
+  AWS_AZS: us-east-2a
+
+jobs:
+  deploy-dev:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Configure AWS credentials from mimula account
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14.x'
+    - name: Install Serverless Framework
+      run: npm install -g serverless
+    - name: Serverless AWS authentication
+      run: sls config credentials --provider aws --key ${{ secrets.ACCESS_KEY_ID }} --secret ${{ secrets.SECRET_ACCESS_KEY }}
+    - name: Install NPM dependencies
+      run: npm install
+    - name: build btc wallets service
+      working-directory: ./src
+      run: |
+          npm install yarn -g
+          yarn
+    - name: Deploy btc Lambda function
+      run: |
+          STAGE=dev sls deploy

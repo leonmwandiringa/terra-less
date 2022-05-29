@@ -1,0 +1,31 @@
+service: terra-less1
+
+frameworkVersion: '3'
+ 
+custom:
+  serverlessSsmFetch:
+    ARTIFACTS_BUCKET_NAME: /terra_less/${env:STAGE}/storage/artifacts/name
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: ${env:STAGE}
+  region: us-east-2
+  apiGateway:
+    restApiId: ${ssm:/terra_less/${env:STAGE}/api_gateway/id}
+    restApiRootResourceId: ${ssm:/terra_less/${env:STAGE}/api_gateway/root_resource_id}
+  deploymentBucket:
+    name: ${ssm:/terra_less/${env:STAGE}/storage/artifacts/name}
+    serverSideEncryption: AES256
+
+functions:
+  wallet:
+    handler: src/handler.handler
+    events:
+      - http: 
+          method: ANY
+          path: /service1/{any+}
+
+plugins:
+  - serverless-ssm-fetch
+  - serverless-dotenv-plugin

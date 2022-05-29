@@ -1,0 +1,13 @@
+{
+  "name": "terraless-service1",
+  "version": "1.0.0",
+  "description": "terraless-service1",
+  "author": "0xL3onardo",
+  "license": "MIT",
+  "devDependencies": {
+    "serverless": "^3.7.1",
+    "serverless-dotenv-plugin": "^3.12.2",
+    "serverless-import-apigateway": "^1.1.1",
+    "serverless-ssm-fetch": "^2.0.0"
+  }
+}
