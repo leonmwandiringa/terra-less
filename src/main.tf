@@ -1,3 +1,26 @@
+###########################api gateway to cloudwatch role################################
+module "terra_less_api_gateway_iam" {
+  source = "techadontech/role/iam"
+  tags = var.global_tags
+  name = "api_gateway_iam"
+  service_name = "apigateway.amazonaws.com"
+  policies = [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:DescribeLogGroups",
+                "logs:DescribeLogStreams",
+                "logs:PutLogEvents",
+                "logs:GetLogEvents",
+                "logs:FilterLogEvents"
+            ],
+            "Resource": "*"
+        }
+  ]
+}
+
 module "terra_less_api_gateway_log_group" {
   source = "techadontech/logs/cloudwatch"
   log_group_name = "terra-less-log-group"
@@ -12,7 +35,7 @@ module "terra_less_api_gateway" {
   xray_tracing_enabled = true
   metrics_enabled = true
   log_group_arn = module.terra_less_api_gateway_log_group.arn
-  cloudwatch_role_arn = module.terra_less_api_gateway_log_group.arn
+  cloudwatch_role_arn = module.terra_less_api_gateway_iam.arn
   openapi_config = {
     openapi = "3.0.1"
     info = {
