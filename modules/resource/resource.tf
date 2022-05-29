@@ -3,21 +3,21 @@ resource "null_resource" "default" {
 
   triggers = {
     timestamp = timestamp()
-    create_commands = join("", var.create_commands)
-    destroy_commands = join("", var.destroy_commands)
+    create_commands = join("\n", var.create_commands)
+    destroy_commands = join("\n", var.destroy_commands)
   }
   
   provisioner "local-exec" {
     when = create
     command = <<-EOT
-        ${join("\n", var.create_commands)}
+        ${self.triggers.create_commands}
     EOT
   }
 
   provisioner "local-exec" {
     when = destroy
     command = <<-EOT
-        ${join("\n", var.destroy_commands)}
+        ${self.triggers.destroy_commands}
     EOT
   }
 }
