@@ -28,7 +28,7 @@ module "terra_less_api_gateway_log_group" {
   global_tags = merge({"Name" = "terra less Api gateway log group"}, var.global_tags)
 }
 
-################ terra less api gateway #######################
+################ terra less api gateway #########
 module "terra_less_api_gateway" {
   source = "techadontech/gateway-rest-api/api"
   name          = "terra-less"
