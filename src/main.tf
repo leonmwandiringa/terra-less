@@ -72,6 +72,7 @@ module "terra_less_service1" {
     "cd ./src",
     "ls",
     "yarn",
+    "cd ..",
     "STAGE=dev sls deploy"
   ]
   tags = var.global_tags
