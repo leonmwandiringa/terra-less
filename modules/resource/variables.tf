@@ -3,7 +3,7 @@ variable "commands" {
   default = []
 }
 
-variable "global_tags" {
+variable "tags" {
   type = object({
     Author      = string
     Environment = string
