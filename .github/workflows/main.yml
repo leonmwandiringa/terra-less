@@ -49,4 +49,4 @@ jobs:
       - name: "Terraform Apply"
         working-directory: ./src
         id: terraform_apply
-        run: terraform destroy -auto-approve
+        run: terraform apply -auto-approve
