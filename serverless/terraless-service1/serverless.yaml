@@ -27,5 +27,5 @@ functions:
           path: /service1/{any+}
 
 plugins:
-  - serverless-ssm-fetch
+  # - serverless-ssm-fetch
   - serverless-dotenv-plugin

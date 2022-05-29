@@ -67,7 +67,6 @@ module "terra_less_service1" {
   source = "../modules/resource"
   commands = [
     "cd ../serverless/terraless-service1",
-    "ls",
     "npm install",
     "cd ./src",
     "ls",

@@ -7,7 +7,6 @@
   "devDependencies": {
     "serverless": "^3.7.1",
     "serverless-dotenv-plugin": "^3.12.2",
-    "serverless-import-apigateway": "^1.1.1",
     "serverless-ssm-fetch": "^2.0.0"
   }
 }
