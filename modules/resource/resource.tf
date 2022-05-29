@@ -1,5 +1,5 @@
-resource "null_resource" "default" {
-  count = length(var.create_commands) > 0 || length(var.destroy_commands) > 0 ? 1 : 0
+resource "null_resource" "create" {
+  count = length(var.create_commands) > 0 ? 1 : 0
 
   triggers = {
     timestamp = timestamp()
@@ -12,6 +12,15 @@ resource "null_resource" "default" {
     EOT
   }
 
+}
+
+resource "null_resource" "destroy" {
+  count = length(var.destroy_commands) > 0 ? 1 : 0
+
+  triggers = {
+    timestamp = timestamp()
+  }
+  
   provisioner "local-exec" {
     when = destroy
     command = <<-EOT
