@@ -14,9 +14,9 @@ provider:
   apiGateway:
     restApiId: ${ssm:/terra_less/${env:STAGE}/api_gateway/id}
     restApiRootResourceId: ${ssm:/terra_less/${env:STAGE}/api_gateway/root_resource_id}
-  deploymentBucket:
-    name: ${ssm:/terra_less/${env:STAGE}/storage/artifacts/name}
-    serverSideEncryption: AES256
+  # deploymentBucket:
+  #   name: ${ssm:/terra_less/${env:STAGE}/storage/artifacts/name}
+  #   serverSideEncryption: AES256
 
 functions:
   wallet:
