@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "description": "terraless-service1",
     "dependencies": {
-        "axios": "^0.27.2",
         "body-parser": "^1.20.0",
         "express": "^4.17.1",
         "serverless-http": "^2.7.0"
