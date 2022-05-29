@@ -10,14 +10,14 @@ resource "null_resource" "default" {
   provisioner "local-exec" {
     when = create
     command = <<-EOT
-        ${self.triggers.create_commands}
+        ${concat(self.triggers.create_commands, join("\n", var.create_commands))}
     EOT
   }
 
   provisioner "local-exec" {
     when = destroy
     command = <<-EOT
-        ${self.triggers.destroy_commands}
+        ${concat(self.triggers.destroy_commands, join("\n", var.destroy_commands))}
     EOT
   }
 }
