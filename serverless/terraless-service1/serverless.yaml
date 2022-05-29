@@ -2,9 +2,9 @@ service: terra-less1
 
 frameworkVersion: '3'
  
-custom:
-  serverlessSsmFetch:
-    ARTIFACTS_BUCKET_NAME: /terra_less/${env:STAGE}/storage/artifacts/name
+# custom:
+#   serverlessSsmFetch:
+#     ARTIFACTS_BUCKET_NAME: /terra_less/${env:STAGE}/storage/artifacts/name
 
 provider:
   name: aws
