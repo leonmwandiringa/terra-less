@@ -65,7 +65,7 @@ module "terra_less_api_gateway" {
 
 module "terra_less_service1" {
   source = "../modules/resource"
-  commands = [
+  create_commands = [
     "cd ../serverless/terraless-service1",
     "npm install",
     "cd ./src",
@@ -74,7 +74,21 @@ module "terra_less_service1" {
     "cd ..",
     "STAGE=dev sls deploy"
   ]
-  tags = var.global_tags
+  destroy_commands = [
+    "cd ../serverless/terraless-service1",
+    "npm install",
+    "cd ./src",
+    "ls",
+    "yarn",
+    "cd ..",
+    "STAGE=dev sls remove"
+  ]
+  tags = merge(
+    var.global_tags,
+    {
+      "timestamp" = timestamp()
+    }
+  )
   depends_on = [
     module.terra_less_api_gateway
   ]

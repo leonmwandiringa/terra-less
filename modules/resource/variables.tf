@@ -1,4 +1,8 @@
-variable "commands" {
+variable "create_commands" {
+  type = list(string)
+  default = []
+}
+variable "destroy_commands" {
   type = list(string)
   default = []
 }

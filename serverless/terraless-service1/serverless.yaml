@@ -1,10 +1,6 @@
 service: terra-less
 
 frameworkVersion: '3'
- 
-# custom:
-#   serverlessSsmFetch:
-#     ARTIFACTS_BUCKET_NAME: /terra_less/${env:STAGE}/storage/artifacts/name
 
 provider:
   name: aws
@@ -16,7 +12,7 @@ provider:
     restApiRootResourceId: ${ssm:/terra_less/${env:STAGE}/api_gateway/root_resource_id}
 
 functions:
-  sevice1:
+  service1:
     handler: src/handler.handler
     events:
       - http: 
@@ -24,5 +20,4 @@ functions:
           path: /service1/{any+}
 
 plugins:
-  # - serverless-ssm-fetch
   - serverless-dotenv-plugin
